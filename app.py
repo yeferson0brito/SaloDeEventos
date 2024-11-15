@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 import datetime
 from pymongo import MongoClient
 import os
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 
 
 """#def crear_app():
@@ -14,8 +14,8 @@ def crear_app():
     app = Flask(__name__)
     try:
         load_dotenv()
-        #cliente = MongoClient("mongodb+srv://yyemithbrito:sVUAM5C1FfKsCy9u@clustertest.ewzbl.mongodb.net/")
-        cliente = MongoClient(os.getenv("MONGODB_URI"))
+        cliente = MongoClient("mongodb+srv://yyemithbrito:sVUAM5C1FfKsCy9u@clustertest.ewzbl.mongodb.net/")
+        #cliente = MongoClient(os.getenv("MONGODB_URI"))
         app.db = cliente.Salon_Eventos
         # Verifica si puedes acceder a las colecciones
         print("Conexión exitosa a MongoDB!")
