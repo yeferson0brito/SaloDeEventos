@@ -13,7 +13,7 @@ app.db = cliente.Salon_Eventos
 def crear_app():
     app = Flask(__name__)
     try:
-        load_dotenv()
+        #load_dotenv()
         cliente = MongoClient("mongodb+srv://yyemithbrito:sVUAM5C1FfKsCy9u@clustertest.ewzbl.mongodb.net/")
         #cliente = MongoClient(os.getenv("MONGODB_URI"))
         app.db = cliente.Salon_Eventos
