@@ -4,16 +4,28 @@ from pymongo import MongoClient
 import os
 from dotenv import load_dotenv
 
+
+"""#def crear_app():
+app = Flask(__name__)
+cliente = MongoClient(os.getenv("MONGODB_URI"))
+app.db = cliente.Salon_Eventos
+"""
 def crear_app():
     app = Flask(__name__)
-    cliente = MongoClient(os.getenv("MONGODB_URI"))
-    app.db = cliente.Salon_Eventos
+    try:
+        load_dotenv()
+        #cliente = MongoClient("mongodb+srv://yyemithbrito:sVUAM5C1FfKsCy9u@clustertest.ewzbl.mongodb.net/")
+        cliente = MongoClient(os.getenv("MONGODB_URI"))
+        app.db = cliente.Salon_Eventos
+        # Verifica si puedes acceder a las colecciones
+        print("Conexión exitosa a MongoDB!")
+    except Exception as e:
+        print("Error de conexión:", e)
 
 
-    #entradas=[]
+    # entradas=[]
     entradas = [entrada for entrada in app.db.contenido.find({})]
     print(entradas)
-
 
     @app.route("/", methods=["GET", "POST"])
     def home():
@@ -40,10 +52,15 @@ def crear_app():
             print("No entramos al metodo post")
             # Retornar la página para solicitudes GET
             return render_template("index.html", entradas=entradas)
+
     return app
 
+"""
 if __name__ == "__main__":
     app = crear_app()
     app.run(debug=True, host="0.0.0.0", port=10000)
-
+"""
+if __name__ == "__main__":
+    app=crear_app()
+    app.run(debug=True, port=5001)
 
